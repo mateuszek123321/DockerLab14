@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./www:/var/www/html
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - php
+
+  php:
+    image: php:8.2-fpm-alpine
+    volumes:
+      - ./www:/var/www/html
+    networks:
+      - backend
+
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - backend
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    networks:
+      - backend
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge

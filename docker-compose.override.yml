@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: nginx
+    ports:
+      - "4001:80"
+
+  php:
+    container_name: php
+    environment:
+      - PHP_FPM_LISTEN=9000
+
+  mysql:
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+    secrets:
+      - mysql_root_password
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    ports:
+      - "6001:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+
+secrets:
+  mysql_root_password:
+    file: ./secrets/mysql_root_password.txt
