@@ -17,6 +17,8 @@ docker exec mysql ls -la /run/secrets/
 
 ### Polecenie 4
 Sprawdzenie działania stron:
+Wyświetlenie strony php: http://localhost:4001
+Wyświetlenie phpMyAdmin: http://localhost:6001
 ![alt text](image-1.png)
 ![alt text](image-2.png)
 
