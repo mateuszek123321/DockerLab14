@@ -24,4 +24,4 @@ Wyświetlenie phpMyAdmin: http://localhost:6001
 
 ### Polecenie 5
 Zatrzymanie lempa :
-docker compose down 
+docker compose -f docker-compose.base.yml -f docker-compose.override.yml down
